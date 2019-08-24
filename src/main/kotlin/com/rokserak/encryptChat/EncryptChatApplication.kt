@@ -9,16 +9,17 @@ import org.springframework.boot.runApplication
 class EncryptChatApplication: CommandLineRunner {
 
 	@Autowired
-	var repository: UserRepository? = null
+	var repository: MessageRepository? = null
 
 	override fun run(vararg args: String?) {
-		repository?.save(User(
-				"rok",
-				"some key"
+		repository?.save(Message(
+				"1",
+				"3",
+				"hello"
 		))
 
-		for (user in repository?.findAll()!!) {
-			println(user)
+		for (message in repository?.findByIdFromAndIdFor("1", "2")!!) {
+			println(message)
 		}
 	}
 }
